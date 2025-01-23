@@ -1,7 +1,13 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 
 
-const Navbar = () => {
+const Navbar = async() => {
+
+  const {getUser} = getKindeServerSession()
+  const user = await getUser()
+  console.log(user)
+
     return (
       <nav className="flex items-center justify-between py-6">
         <div>
@@ -21,18 +27,25 @@ const Navbar = () => {
           >
             Profile
           </Link>
-          <Link
-            className="bg-green-600 px-4 py-1 rounded-sm text-white font-medium uppercase"
-            href="/"
-          >
-            Log In
-          </Link>
-          <Link
-            className="bg-red-600 px-4 py-1 rounded-sm text-white font-medium uppercase"
-            href="/"
-          >
-            Log Out
-          </Link>
+          {user ? (
+            <>
+              <Link
+                className="bg-red-600 px-2 py-1 rounded-sm text-white font-medium uppercase"
+                href="/api/auth/logout"
+              >
+                Log Out
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className="bg-green-600 px-2 py-1 rounded-sm text-white font-medium uppercase"
+                href="/api/auth/login"
+              >
+                Log In
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     );
