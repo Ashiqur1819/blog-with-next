@@ -1,13 +1,21 @@
-"use client";
+
+
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+
+
 
 // import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 // import { useRouter } from "next/navigation";
 // import Image from "next/image";
 // import loadingImage from "../../../public/loading.gif";
+import { redirect } from "next/navigation";
 
-const Profile = () => {
+const Profile = async() => {
+
+    const {getUser} = getKindeServerSession()
+    const user = await getUser()
+  
   // const { isAuthenticated, isLoading } = useKindeAuth();
-  // const router = useRouter();
 
   // if (isLoading) {
   //   return (
@@ -17,10 +25,9 @@ const Profile = () => {
   //   );
   // }
 
-  // if (!isAuthenticated) {
-  //   router.push("/api/auth/login");
-  //   return null;
-  // }
+  if (!user) {
+    redirect("/api/auth/login")
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
