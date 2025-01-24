@@ -10,7 +10,7 @@ const Navbar = async() => {
     return (
       <nav className="flex items-center justify-between py-6">
         <div>
-          <h2 className="text-2xl font-bold text-indigo-900">BlogWithNext</h2>
+          <h2 className="text-2xl font-bold text-indigo-900">NextBlog</h2>
         </div>
 
         <div className="flex items-center gap-6">

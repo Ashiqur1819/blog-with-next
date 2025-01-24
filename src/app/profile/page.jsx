@@ -9,11 +9,9 @@ const Profile = () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
 
 
-    if (!isLoading) {
       if (!isAuthenticated) {
         redirect("/api/auth/login");
       }
-    }
 
 
   if (isLoading) {
