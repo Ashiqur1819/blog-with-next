@@ -8,6 +8,8 @@ import Image from "next/image";
 const Profile = () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
   const router = useRouter();
+    const {getUser} = getKindeServerSession()
+    const user= getUser()
 
   if (isLoading) {
     return (
@@ -18,7 +20,7 @@ const Profile = () => {
   }
 
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
         <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-bold text-purple-900">
         Welcome to your profile!
