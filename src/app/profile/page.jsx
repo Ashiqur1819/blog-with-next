@@ -1,33 +1,34 @@
 "use client";
 
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
-import loadingImage from "../../../public/loading.gif";
 import Image from "next/image";
+import loadingImage from "../../../public/loading.gif";
 
 const Profile = () => {
-  const { isAuthenticated, isLoading } = useKindeBrowserClient();
+  const { isAuthenticated, isLoading } = useKindeAuth();
   const router = useRouter();
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Image src={loadingImage} className="w-12" alt="Loading" />
+        <Image src={loadingImage} alt="Loading..." width={50} height={50} />
       </div>
     );
   }
 
+  if (!isAuthenticated) {
+    router.push("/api/auth/login");
+    return null;
+  }
 
-  if (isAuthenticated && user) {
-        <div className="flex flex-col items-center justify-center min-h-screen">
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-bold text-purple-900">
         Welcome to your profile!
       </h1>
     </div>
-  }
-
-  return router.push("/api/auth/login");
-
+  );
 };
 
 export default Profile;
