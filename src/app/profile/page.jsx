@@ -11,7 +11,6 @@ const Profile = async() => {
   const isAuth = await isAuthenticated()
   const isLoad = await isLoading()
 
-
   if (isLoad) {
     return (
       <div className="flex items-center justify-center min-h-screen">
