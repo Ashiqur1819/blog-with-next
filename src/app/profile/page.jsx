@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import loadingImage from "../../../public/loading.gif";
 import Image from "next/image";
 
-const Profile = () => {
+const Profile = async () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
   const router = useRouter();
     const {getUser} = getKindeServerSession()
-    const user= getUser()
+    const user=  await getUser()
 
   if (isLoading) {
     return (
