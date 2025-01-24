@@ -8,17 +8,17 @@ import Image from "next/image";
 const Profile = () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Image src={loadingImage} className="w-12" alt="Loading"></Image>
+      </div>
+    );
+  }
 
       if (!isAuthenticated) {
         redirect("/api/auth/login");
       }
-
-
-  if (isLoading) {
-    return <div className="flex items-center justify-center min-h-screen">
-      <Image src={loadingImage} className="w-12" alt="Loading"></Image>
-    </div>;
-  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
