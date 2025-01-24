@@ -2,12 +2,15 @@
 
 import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
+import loadingImage from "../../public/loading.gif"
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useKindeAuth();
+  const { isAuthenticated, isLoading } = useKindeAuth();
   const router = useRouter();
 
-
+  if (isLoading) return <div className="flex items-center justify-center min-h-screen">
+          <Image src={loadingImage} alt="Loading..." width={50} height={50} />
+        </div>
   if (!isAuthenticated) {
     router.push("/api/auth/login");
     return null;
