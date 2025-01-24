@@ -24,18 +24,18 @@ const Profile = async() => {
   //     </div>
   //   );
   // }
-
-  if (!user) {
-    redirect("/api/auth/login")
-  }
-
-  return (
+return (
+  user ? (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-bold text-purple-900">
         Welcome to your profile!
       </h1>
     </div>
-  );
+  ) : (
+    redirect("/api/auth/login")
+  ))
+
+  
 };
 
 export default Profile;
