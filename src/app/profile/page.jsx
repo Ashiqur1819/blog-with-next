@@ -1,24 +1,27 @@
 "use client";
 
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { redirect } from "next/navigation";
-import loadingImage from "../../../public/loading.gif"
+import { useRouter } from "next/navigation";
+import loadingImage from "../../../public/loading.gif";
 import Image from "next/image";
 
 const Profile = () => {
-  const { isAuthenticated, isLoading } = useKindeBrowserClient();
+  const { isAuthenticated, isLoading} = useKindeBrowserClient();
+  const router = useRouter();
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Image src={loadingImage} className="w-12" alt="Loading"></Image>
+        <Image src={loadingImage} className="w-12" alt="Loading" />
       </div>
     );
   }
 
-      if (!isAuthenticated) {
-        redirect("/api/auth/login");
-      }
+
+  if (!isAuthenticated) {
+    router.push("/api/auth/login");
+    return null;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
