@@ -6,7 +6,7 @@ const Details = async ({ params }) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-3xl mx-auto shadow-md p-12 border">
+      <div className="max-w-3xl mx-auto shadow-md p-6 md:p-12 border">
         <h3 className="text-lg font-semibold text-blue-950">
           User ID: {post.userId}
         </h3>
