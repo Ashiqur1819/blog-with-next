@@ -14,23 +14,23 @@ const Navbar = async () => {
         <h2 className="text-2xl md:text-3xl font-bold text-indigo-900">NextBlogs</h2>
       </div>
 
-      <div className="flex items-center gap-6">
-        <Link className="text-base font-medium text-indigo-900" href="/">
+      <div className="flex items-center gap-4 md:gap-6">
+        <Link className="text-sm md:text-base font-medium text-indigo-900" href="/">
           Home
         </Link>
-        <Link className="text-base font-medium text-indigo-900" href="/profile">
+        <Link className="text-sm md:text-base font-medium text-indigo-900" href="/profile">
           Profile
         </Link>
         {user ? (
           <>
-            <LogoutLink className="bg-red-600 px-4 py-1 rounded-sm text-white font-medium">
+            <LogoutLink className="text-sm md:text-base bg-red-600 px-2 md:px-4 py-1 rounded-sm text-white font-medium">
               Log Out
             </LogoutLink>
           </>
         ) : (
           <>
             <Link
-              className="bg-green-600 px-4 py-1 rounded-sm text-white font-medium"
+              className="text-sm md:text-base bg-green-600 px-2 md:px-4 py-1 rounded-sm text-white font-medium"
               href="/api/auth/login"
             >
               Log In
