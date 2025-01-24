@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import loadingImage from "../../../public/loading.gif";
 import Image from "next/image";
 
-const Profile = () => {
+const Profile = async() => {
   const { isAuthenticated, isLoading} = useKindeBrowserClient();
   const router = useRouter();
+  const isAuth = await isAuthenticated()
+  const isLoad = await isLoading()
 
-  if (isLoading) {
+
+  if (isLoad) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Image src={loadingImage} className="w-12" alt="Loading" />
@@ -18,7 +21,7 @@ const Profile = () => {
   }
 
 
-  if (!isAuthenticated) {
+  if (!isAuth) {
     router.push("/api/auth/login");
     return null;
   }
