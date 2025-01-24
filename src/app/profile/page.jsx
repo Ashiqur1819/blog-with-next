@@ -2,14 +2,22 @@
 
 import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import loadingImage from "../../../public/loading.gif";
 
 const Profile = () => {
-  const { isAuthenticated, isLoading } = useKindeAuth();
+  const { isAuthenticated, user, isLoading } = useKindeAuth();
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
-  if (isLoading) {
+  useEffect(() => {
+    if (!isLoading) {
+      setLoading(false);
+    }
+  }, [isLoading]);
+
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Image src={loadingImage} alt="Loading..." width={50} height={50} />
