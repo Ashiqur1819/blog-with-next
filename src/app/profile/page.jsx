@@ -1,12 +1,12 @@
 "use client";
 
-import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loadingImage from "../../../public/loading.gif";
 
 const Profile = () => {
-  const { isAuthenticated, isLoading } = useKindeAuth();
+  const { isAuthenticated, isLoading } = useKindeBrowserClient();
   const router = useRouter();
 
 
