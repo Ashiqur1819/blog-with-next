@@ -1,9 +1,10 @@
+
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 
 
-const Navbar = async() => {
 
+const Navbar = async() => {
   const {getUser} = getKindeServerSession()
   const user = await getUser()
 
@@ -14,16 +15,10 @@ const Navbar = async() => {
         </div>
 
         <div className="flex items-center gap-6">
-          <Link
-            className="text-base font-medium text-gray-700"
-            href="/"
-          >
+          <Link className="text-base font-medium text-gray-700" href="/">
             Home
           </Link>
-          <Link
-            className="text-base font-medium text-gray-700"
-            href="/profile"
-          >
+          <Link className="text-base font-medium text-gray-700" href="/profile">
             Profile
           </Link>
           {user ? (

@@ -1,31 +1,32 @@
-"use client"
+"use client";
 
-
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { useEffect } from "react";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import loadingImage from "../../../public/loading.gif";
 
 const Profile = () => {
-  const { isAuthenticated, isLoading} = useKindeBrowserClient();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log("User is authenticated");
-    } else {
-      console.log("User is not authenticated");
-    }
-  }, [isAuthenticated]);
+  const { isAuthenticated, isLoading } = useKindeAuth();
+  const router = useRouter();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Image src={loadingImage} alt="Loading..." width={50} height={50} />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
-    return <p>User is logged out</p>;
+    router.push("/api/auth/login");
+    return null;
   }
 
   return (
-    <div>
-      <h1>Welcome to your profile</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold text-purple-900">
+        Welcome to your profile!
+      </h1>
     </div>
   );
 };
