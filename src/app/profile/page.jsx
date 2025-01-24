@@ -4,13 +4,10 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
 import loadingImage from "../../../public/loading.gif";
 import Image from "next/image";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-const Profile = async () => {
+const Profile = () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
   const router = useRouter();
-    const {getUser} = getKindeServerSession()
-    const user=  await getUser()
 
   if (isLoading) {
     return (
