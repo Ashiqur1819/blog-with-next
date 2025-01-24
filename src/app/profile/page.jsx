@@ -2,20 +2,19 @@
 
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { redirect } from "next/navigation";
-import { useEffect} from "react";
 import loadingImage from "../../../public/loading.gif"
 import Image from "next/image";
 
 const Profile = () => {
   const { isAuthenticated, isLoading } = useKindeBrowserClient();
 
-  useEffect(() => {
+
     if (!isLoading) {
       if (!isAuthenticated) {
         redirect("/api/auth/login");
       }
     }
-  }, [isAuthenticated, isLoading, redirect]);
+
 
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-screen">
